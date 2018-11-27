@@ -1,6 +1,7 @@
-# Expectation-Maximization Calculator
+# Expectation-Maximization Calculator (WIP)
 
 Feed the program data and it will learn on its own about the subjects involved.
+The project is still a work-in-progress.
 
 ### Data
 
