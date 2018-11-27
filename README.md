@@ -32,7 +32,7 @@ the sole parent of all X parameters. There can be as many possible
 i values as desired.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
-Format: Place each value on a new line, going down from i = 1 to
+**Format**: Place each value on a new line, going down from i = 1 to
 whatever number of options the user desires.
 
 ### Initial conditional probability values
@@ -45,7 +45,7 @@ person #3 (c = 3) gives response #2 (j = 2) given that his/her
 hidden parameter is #4 (Y = 4).<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
-Format: TBD
+**Format**: TBD
 
 ### Data samples
 
@@ -53,7 +53,7 @@ The data contains input from many people on different topics.<br/>
 For example, 200 people can respond to whether they like, dislike,
 don't care for, or don't know 50 celebrities. As a result, there
 would be 200 x 50 inputs.<br/>
-Format: Place each sample/person's inputs on a single line. Each
+**Format**: Place each sample/person's inputs on a single line. Each
 line represents a single sample/person, and the inputs go from
 left to right, going from c = 1 to however many categories are
 specified by the user. Separate each input with a space. A input
