@@ -23,7 +23,7 @@ There are 3 different files to feed into the program:<br/>
 * Initial conditional probability values
 * Data samples
 
-# Initial prior probability values
+### Initial prior probability values
 
 These values hold P(Y = i). Y is the unobserved hidden parameter,
 the sole parent of all X parameters. There can be as many possible
@@ -33,7 +33,7 @@ starting points that the EM algorithm will start from.<br/>
 Format: Place each value on a new line, going down from i = 1 to
 whatever number of options the user desires.
 
-# Initial conditional probability values
+### Initial conditional probability values
 
 These values hold P(R<sub>c</sub> = j \| Y = i). X is the observed
 parameter, and j is the response to that parameter that a person
@@ -45,7 +45,7 @@ These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
 Format: TBD
 
-# Data samples
+### Data samples
 
 The data contains input from many people on different topics.<br/>
 For example, 200 people can respond to whether they like, dislike,
