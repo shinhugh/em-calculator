@@ -43,6 +43,8 @@ person may make.<br/>
 For example, one such value may represent the probability that
 person #3 (*c* = 3) gives response #2 (*j* = 2) given that his/her
 hidden parameter is #4 (*i* = 4).<br/>
+Make sure that the range of Y values is consistent with what is
+provided in the prior probability file.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
 **Format**: TBD
