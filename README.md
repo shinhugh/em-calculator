@@ -18,6 +18,10 @@ Avicii). To make this calculation, the program learns from the inputs
 made by all others on this category as well as the inputs made by
 person X on the other categories.
 
+## Get started
+
+Coming soon
+
 ## Input files
 
 There are 3 different files to feed into the program:<br/>
