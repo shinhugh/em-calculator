@@ -60,8 +60,11 @@ For example, 200 people can respond to whether they like, dislike,
 don't care for, or don't know 50 celebrities. As a result, there
 would be 200 x 50 inputs.<br/>
 **Format**: Place each sample/person's inputs on a single line. Each
-line represents a single sample/person, and the inputs go from
-left to right, going from *c* = 1 to however many categories are
+line represents a single sample/person. Start each line with a unique
+name (alphabet characters only, not case-sensitive) and append a
+'#' after the name. The sample's inputs start after the '#'. Don't
+use spaces before or after the '#'. The inputs go from left to
+right, going from *c* = 1 to however many categories are
 specified by the user. Separate each input with a space. A input
 of 0 signifies no input (i.e. "I don't know", "I haven't seen it").
 The meanings of all other values can be assigned by the user; make

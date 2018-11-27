@@ -2,15 +2,14 @@
 #define EXPMAX_H
 
 #define WORDBREAK ' '
-#define POST_NAME '#'
-#define INVALID_NAME -1
+#define INVALID_NAME ""
 
 #include <string>
 #include <vector>
 #include <map>
 #include <cctype>
 #include "EM.h"
-#include "fileParser.h"
+#include "emFileParser.h"
 
 /*
  * Format for input files:

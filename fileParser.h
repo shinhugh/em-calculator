@@ -1,6 +1,8 @@
 #ifndef FILEPARSER_H
 #define FILEPARSER_H
 
+#define UNTIL_END -1
+
 #include <fstream>
 #include <vector>
 #include <string>

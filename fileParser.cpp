@@ -1,18 +1,27 @@
 #include "fileParser.h"
 
 std::vector<std::vector<std::string> > parseFileStr
-  (std::string filename, char wordBreak) {
+  (std::string filename, char wordBreak, int firstLine = 0,
+  int lastLine = UNTIL_END) {
 
   // outer vector holds lines
   // inner vectors hold elements from that line
   // output[line][element]
   std::vector<std::vector<std::string> > output;
 
-  const char* filename_c = filename.c_str();
-  std::ifstream ifs(filename_c);
+  std::ifstream ifs(filename.c_str());
+
+  // skip lines at top to get to firstLine
+  for(int l = 0; l < firstLine; l++) {
+    std::string trash;
+    std::getline(ifs, trash);
+  }
+
+  int lineNum = firstLine;
+  bool lastLineParsed = false;
 
   ifs.peek();
-  while(!ifs.eof()) {
+  while(!ifs.eof() && !lastLineParsed) {
 
     // create vector for this line
     std::vector<std::string> elements;
@@ -37,6 +46,12 @@ std::vector<std::vector<std::string> > parseFileStr
     // add this line's elements to output vector
     output.push_back(elements);
 
+    lineNum++;
+
+    if(lineNum == lastLine + 1) {
+      lastLineParsed = true;
+    }
+
     // update eof
     ifs.peek();
   }
@@ -49,18 +64,27 @@ std::vector<std::vector<std::string> > parseFileStr
 
 
 std::vector<std::vector<double> > parseFileDouble
-  (std::string filename, char wordBreak) {
+  (std::string filename, char wordBreak, int firstLine = 0,
+  int lastLine = UNTIL_END) {
 
   // outer vector holds lines
   // inner vectors hold elements from that line
   // output[line][element]
   std::vector<std::vector<double> > output;
 
-  const char* filename_c = filename.c_str();
-  std::ifstream ifs(filename_c);
+  std::ifstream ifs(filename.c_str());
+
+  // skip lines at top to get to firstLine
+  for(int l = 0; l < firstLine; l++) {
+    std::string trash;
+    std::getline(ifs, trash);
+  }
+
+  int lineNum = firstLine;
+  bool lastLineParsed = false;
 
   ifs.peek();
-  while(!ifs.eof()) {
+  while(!ifs.eof() && !lastLineParsed) {
 
     // create vector for this line
     std::vector<double> elements;
@@ -89,6 +113,12 @@ std::vector<std::vector<double> > parseFileDouble
     // add this line's elements to output vector
     output.push_back(elements);
 
+    lineNum++;
+
+    if(lineNum == lastLine + 1) {
+      lastLineParsed = true;
+    }
+
     // update eof
     ifs.peek();
   }
@@ -101,18 +131,27 @@ std::vector<std::vector<double> > parseFileDouble
 
 
 std::vector<std::vector<bool> > parseFileBool
-  (std::string filename, char wordBreak) {
+  (std::string filename, char wordBreak, int firstLine = 0,
+  int lastLine = UNTIL_END) {
 
   // outer vector holds lines
   // inner vectors hold elements from that line
   // output[line][element]
   std::vector<std::vector<bool> > output;
 
-  const char* filename_c = filename.c_str();
-  std::ifstream ifs(filename_c);
+  std::ifstream ifs(filename.c_str());
+
+  // skip lines at top to get to firstLine
+  for(int l = 0; l < firstLine; l++) {
+    std::string trash;
+    std::getline(ifs, trash);
+  }
+
+  int lineNum = firstLine;
+  bool lastLineParsed = false;
 
   ifs.peek();
-  while(!ifs.eof()) {
+  while(!ifs.eof() && !lastLineParsed) {
 
     // create vector for this line
     std::vector<bool> elements;
@@ -144,6 +183,12 @@ std::vector<std::vector<bool> > parseFileBool
 
     // add this line's elements to output vector
     output.push_back(elements);
+
+    lineNum++;
+
+    if(lineNum == lastLine + 1) {
+      lastLineParsed = true;
+    }
 
     // update eof
     ifs.peek();
