@@ -5,16 +5,18 @@ expectation-maximization to calculate unobserved
 data values.<br/>
 Feed the program data and it will learn on its own about the
 subjects involved.<br/>
-The project is still a work-in-progress.
+<br/>
+This project is still a work-in-progress.
 
 ## Goal
 
 The program will take data and, given that person X has not given a
 definite response to a specific topic (i.e. responded "don't know"
 to "Avicii"), determine the most likely response person X would make
-to that same topic. The program learns from the inputs made by all
-others as well as the other inputs made by person X to calculate
-this.
+to that same topic (i.e. person X is most likely to be a fan of
+Avicii). To make this calculation, the program learns from the inputs
+made by all others on this category as well as the inputs made by
+person X on the other categories.
 
 ## Input files
 
