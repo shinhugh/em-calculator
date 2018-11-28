@@ -25,7 +25,5 @@ std::vector<std::vector<std::vector<double> > >
 std::vector<std::vector<unsigned short> >
   parseData(std::string filename) {
 
-  std::vector<std::vector<std::string> > data_uf
-    = parseFileStr(filename, NAME_SEP);
   // TODO
 }

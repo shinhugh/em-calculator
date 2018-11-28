@@ -2,7 +2,6 @@
 #define EMFILEPARSER_H
 
 #define WORDBREAK ' '
-#define NAME_SEP '#'
 
 #include <vector>
 #include <string>
