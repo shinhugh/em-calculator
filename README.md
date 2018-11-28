@@ -93,7 +93,7 @@ It holds 3 segments:<br/>
 * labels for all *n* categories
 * meanings assigned to all m possible responses (0 reserved for
 "no response")
-* names of all samples/people in the data
+* names of all samples/people in the data<br/>
 **Format**:<br/>
 Place the items in the order given immediately above.
 Every label/meaning/name goes on its own line. Separate the segments
