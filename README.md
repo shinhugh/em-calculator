@@ -37,7 +37,8 @@ the sole parent of all X parameters. There can be as many possible
 *i* values as desired.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
-**Format**: Place each value on a new line, going down from *i* = 1
+**Format**:<br/>
+Place each value on a new line, going down from *i* = 1
 to whatever number of options the user desires.
 
 ### Initial conditional probability values
@@ -52,7 +53,8 @@ Make sure that the range of Y values is consistent with what is
 provided in the prior probability file.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
-**Format**: Place each probability P(X<sub>c</sub> = *j* \| Y = *i*)
+**Format**:<br/>
+Place each probability P(X<sub>c</sub> = *j* \| Y = *i*)
 on the line represented by *i* and *c*. The first line represents
 *i* = 0, *c* = 0. The probability values are placed on that line, in
 order of increasing j. The top left probability should be
@@ -72,7 +74,8 @@ The data contains input from many people on different topics.<br/>
 For example, 200 people can respond to whether they like, dislike,
 don't care for, or don't know 50 celebrities. As a result, there
 would be 200 x 50 inputs.<br/>
-**Format**: Place each sample/person's inputs on a single line. Each
+**Format**:<br/>
+Place each sample/person's inputs on a single line. Each
 line represents a single sample/person. The inputs go from left to
 right, going from *c* = 1 to however many categories are
 specified by the user. Separate each input with a space. A input
@@ -91,7 +94,8 @@ It holds 3 segments:<br/>
 * meanings assigned to all m possible responses (0 reserved for
 "no response")
 * names of all samples/people in the data
-**Format**: Place the items in the order given immediately above.
+**Format**:<br/>
+Place the items in the order given immediately above.
 Every label/meaning/name goes on its own line. Separate the segments
 with a single empty line. Don't insert any empty lines in between
 items of the same segment. The items in a segment must be ordered
