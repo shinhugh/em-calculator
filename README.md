@@ -5,8 +5,23 @@ expectation-maximization to calculate unobserved
 data values.<br/>
 Feed the program data and it will learn on its own about the
 subjects involved.<br/>
+Suppose you have a certain selection of books and you have
+a large number of people take a survey on whether they like
+these books. Not every person will have read all the books in
+your selection. The program will take the data from the survey
+and calculate whether a person who hasn't read a certain book
+would be likely to enjoy it.<br/>
+The context isn't limited to books nor binary response models.
+This program can be applied to the question of people's favorite
+dessert flavors or apparel colors.<br/>
+The number of possible responses can be any value (> 0), but
+**all questions must have the same pool of possible responses**.
+For example, questions 1 and 2 may ask for the person's favorite
+ice cream and lollipop flavors, respectively, but question 3
+cannot ask for the person's favorite salad dressing (unless
+chocolate dressing is a thing?).<br/>
 <br/>
-This project is still a work-in-progress.
+**This project is still a work-in-progress.**
 
 ## Goal
 
