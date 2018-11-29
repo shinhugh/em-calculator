@@ -15,6 +15,46 @@ EM::EM(std::vector<double> initY,
 
 
 
+void setPY(std::vector<double> pYUpdate) {
+
+  for(int i = 0; i < k; i++) {
+    pY[i] = pYUpdate[i];
+  }
+
+  iterCount = 0;
+}
+
+
+
+void setPX(std::vector<std::vector<std::vector<double> > >
+  pXUpdate) {
+
+  for(int i = 0; i < k; i++) {
+    for(int c = 0; c < n; c++) {
+      for(int j = 0; j < m; j++) {
+        pX[i][c][j] = pXUpdate[i][c][j];
+      }
+    }
+  }
+
+  iterCount = 0;
+}
+
+
+
+void setData(std::vector<std::vector<unsigned short> > dataUpdate) {
+
+  for(int t = 0; t < T; t++) {
+    for(int c = 0; c < n; c++) {
+      data[t][c] = dataUpdate[t][c];
+    }
+  }
+
+  iterCount = 0;
+}
+
+
+
 void EM::iterate() {
 
   // updated pY and pX vectors

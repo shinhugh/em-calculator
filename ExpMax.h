@@ -9,7 +9,7 @@
 #include <map>
 #include <cctype>
 #include "EM.h"
-#include "emFileParser.h"
+#include "fileParser.h"
 
 /*
  * Format for input files:
@@ -20,7 +20,6 @@
  *
  * initX_file: File with initial probabilities for
  * P(X_c = j | Y = i)
- *   State max value of c (n) on first line (nothing else)
  *   i increases downward in segments of lines
  *   c increases downward in new lines, resetting at new i
  *   j goes rightward in inputs separated by single spaces
@@ -48,25 +47,46 @@ class ExpMax {
 private:
 
   // does all the math
-  EM calculator;
+  EM* calculator;
+
+  // same values from EM
+  int k;
+  int n;
+  int m;
+  int T;
 
   // key: sample/person name
   // value: t value (sample number)
   std::map<std::string, int> sampleID;
 
-  // key: parameter/subject name
+  // key: category name
   // value: c value
   std::map<std::string, int> paramID;
 
-  // key: j value
+  // index: j value
   // value: input option name
-  std::map<int, std::string> inputID;
+  std::vector<std::string> inputID;
+
+  // call 2nd
+  void parseInitY(std::string filename);
+
+  // call 3rd
+  void parseInitX(std::string filename);
+
+  // call 4th
+  void parseData(std::string filename);
+
+  // call 1st
+  void parseMeanings(std::string filename);
 
 public:
 
   // constructor
   ExpMax(std::string initY_file, std::string initX_file,
-    std::string data_file);
+    std::string data_file, std::string meaning_file);
+
+  // destructor
+  ~ExpMax();
 
   // get name of input option that is most likely for the
   // specified parameter given the specified sample

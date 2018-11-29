@@ -73,6 +73,18 @@ public:
     std::vector<std::vector<std::vector<double> > > initX,
     std::vector<std::vector<unsigned char> > data);
 
+  // set P(Y = i) values
+  // resets iteration count to 0
+  void setPY(std::vector<double> pYUpdate);
+
+  // set P(X_c = j | Y = i) values
+  // resets iteration count to 0
+  void setPX(std::vector<std::vector<std::vector<double> > > pXUpdate);
+
+  // set data inputs
+  // resets iteration count to 0
+  void setData(std::vector<std::vector<unsigned short> > dataUpdate);
+
   // run an expectation + maximization step once, updating the parameters
   void iterate();
 
