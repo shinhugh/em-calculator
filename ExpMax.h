@@ -10,6 +10,7 @@
 #include <cctype>
 #include "EM.h"
 #include "fileParser.h"
+#include "caseChange.h"
 
 /*
  * Format for input files:
@@ -67,14 +68,19 @@ private:
   // value: input option name
   std::vector<std::string> inputID;
 
+  // do not call the following 4 private helper functions
+  // only meant for use within constructor implementation
+
   // call 2nd
-  void parseInitY(std::string filename);
+  std::vector<double> parseInitY(std::string filename);
 
   // call 3rd
-  void parseInitX(std::string filename);
+  std::vector<std::vector<std::vector<double> > >
+    parseInitX(std::string filename);
 
   // call 4th
-  void parseData(std::string filename);
+  std::vector<std::vector<unsigned short> >
+    parseData(std::string filename);
 
   // call 1st
   void parseMeanings(std::string filename);

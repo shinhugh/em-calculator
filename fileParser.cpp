@@ -63,7 +63,7 @@ std::vector<std::vector<std::string> > parseFileStr
 
 
 
-std::vector<std::vector<std::string> > parseFileInt
+std::vector<std::vector<int> > parseFileInt
   (std::string filename, char wordBreak, int firstLine,
   int lastLine) {
 

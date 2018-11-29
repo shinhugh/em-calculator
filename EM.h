@@ -59,6 +59,9 @@ private:
   // # of iterations completed
   int iterCount;
 
+  // calculate log-likelihood
+  double logLikelihood();
+
   // calculate probability P(Y = i | sample t)
   double pYGivSample(int i, int t);
 
@@ -71,7 +74,7 @@ public:
   // look above for format of vectors
   EM(std::vector<double> initY,
     std::vector<std::vector<std::vector<double> > > initX,
-    std::vector<std::vector<unsigned char> > data);
+    std::vector<std::vector<unsigned short> > data);
 
   // set P(Y = i) values
   // resets iteration count to 0

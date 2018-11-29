@@ -39,8 +39,8 @@ std::string ExpMax::mostProbVal(std::string sampleName,
 
   // if specified sample/param doesn't exist,
   // return INVALID_NAME
-  if(sampleID.find(sampleName_uc) == std::map::end
-    || paramID.find(paramName_uc) == std::map::end) {
+  if(sampleID.find(sampleName_uc) == sampleID.end()
+    || paramID.find(paramName_uc) == paramID.end()) {
     return INVALID_NAME;
   }
 
@@ -58,7 +58,7 @@ std::vector<double> ExpMax::parseInitY(std::string filename) {
     = parseFileDouble(filename, WORDBREAK);
   std::vector<double> initY(initY_uf.size(), 0);
 
-  for(int i = 0; i < initY.size(); i++) {
+  for(int i = 0; i < static_cast<int>(initY.size()); i++) {
     initY[i] = initY_uf[i][0];
   }
 
@@ -100,8 +100,8 @@ std::vector<std::vector<unsigned short> > ExpMax::parseData
     data(data_uf.size(),
     std::vector<unsigned short>(data_uf[0].size(), 0));
 
-  for(int t = 0; t < data_uf.size(); t++) {
-    for(int c = 0; c < data_uf[0].size(); c++) {
+  for(int t = 0; t < static_cast<int>(data_uf.size()); t++) {
+    for(int c = 0; c < static_cast<int>(data_uf[0].size()); c++) {
       data[t][c] = (unsigned short) data_uf[t][c];
     }
   }
@@ -117,7 +117,7 @@ void ExpMax::parseMeanings(std::string filename) {
   std::vector<std::vector<std::string> > uf
     = parseFileStr(filename, WORDBREAK);
   std::vector<std::string> allLines(uf.size(), "");
-  for(int i = 0; i < uf.size(); i++) {
+  for(int i = 0; i < static_cast<int>(uf.size()); i++) {
     allLines[i] = toUpper(uf[i][0]);
   }
 
@@ -154,7 +154,7 @@ void ExpMax::parseMeanings(std::string filename) {
   while(!endOfSegment) {
     sampleNames.push_back(allLines[lineInd]);
     lineInd++;
-    if(lineInd == allLines.size()) {
+    if(lineInd == static_cast<int>(allLines.size())) {
       endOfSegment = true;
     }
   }
@@ -163,11 +163,11 @@ void ExpMax::parseMeanings(std::string filename) {
 
   inputID = inputMeanings;
 
-  for(int i = 0; i < categories.size(); i++) {
+  for(int i = 0; i < static_cast<int>(categories.size()); i++) {
     paramID[ categories[i] ] = i;
   }
 
-  for(int i = 0; i < sampleNames.size(); i++) {
+  for(int i = 0; i < static_cast<int>(sampleNames.size()); i++) {
     sampleID[ sampleNames[i] ] = i;
   }
 

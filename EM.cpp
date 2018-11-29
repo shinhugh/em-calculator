@@ -15,7 +15,7 @@ EM::EM(std::vector<double> initY,
 
 
 
-void setPY(std::vector<double> pYUpdate) {
+void EM::setPY(std::vector<double> pYUpdate) {
 
   for(int i = 0; i < k; i++) {
     pY[i] = pYUpdate[i];
@@ -26,7 +26,7 @@ void setPY(std::vector<double> pYUpdate) {
 
 
 
-void setPX(std::vector<std::vector<std::vector<double> > >
+void EM::setPX(std::vector<std::vector<std::vector<double> > >
   pXUpdate) {
 
   for(int i = 0; i < k; i++) {
@@ -42,7 +42,7 @@ void setPX(std::vector<std::vector<std::vector<double> > >
 
 
 
-void setData(std::vector<std::vector<unsigned short> > dataUpdate) {
+void EM::setData(std::vector<std::vector<unsigned short> > dataUpdate) {
 
   for(int t = 0; t < T; t++) {
     for(int c = 0; c < n; c++) {
@@ -120,7 +120,7 @@ int EM::iterateFull() {
   while(!done) {
     this->iterate();
     double newLL = this->logLikelihood();
-    if(abs(lastLL - newLL) < LL_CHANGE_THRES) {
+    if(std::abs(lastLL - newLL) < LL_CHANGE_THRES) {
       done = true;
     }
     lastLL = newLL;
@@ -133,7 +133,7 @@ int EM::iterateFull() {
 
 
 
-double logLikelihood() {
+double EM::logLikelihood() {
   double sum1 = 0;
   for(int t = 0; t < T; t++) {
 

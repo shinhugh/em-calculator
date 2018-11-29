@@ -2,7 +2,7 @@
 
 std::string toUpper(std::string str) {
   std::string translated;
-  for(int i = 0; i < str.size(); i++) {
+  for(int i = 0; i < static_cast<int>(str.size()); i++) {
     translated.push_back(toupper(str[i]));
   }
   return translated;
@@ -10,7 +10,7 @@ std::string toUpper(std::string str) {
 
 std::string toLower(std::string str) {
   std::string translated;
-  for(int i = 0; i < str.size(); i++) {
+  for(int i = 0; i < static_cast<int>(str.size()); i++) {
     translated.push_back(tolower(str[i]));
   }
   return translated;

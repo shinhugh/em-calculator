@@ -15,7 +15,7 @@ std::vector<std::vector<std::string> > parseFileStr
   int lastLine = UNTIL_END);
 
 // parse into ints
-std::vector<std::vector<std::string> > parseFileInt
+std::vector<std::vector<int> > parseFileInt
   (std::string filename, char wordBreak, int firstLine = 0,
   int lastLine = UNTIL_END);
 
