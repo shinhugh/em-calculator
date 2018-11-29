@@ -2,9 +2,9 @@
 
 A command line utility that takes in data and uses
 expectation-maximization to calculate unobserved
-data values.<br/>
-Feed the program data and it will learn on its own about the
-subjects involved.<br/>
+data values. Feed the program data and it will learn on its
+own about the subjects involved.<br/>
+<br/>
 Suppose you have a certain selection of books and you have
 a large number of people take a survey on whether they like
 these books. Not every person will have read all the books in
@@ -19,7 +19,7 @@ The number of possible responses can be any value (> 0), but
 For example, questions 1 and 2 may ask for the person's favorite
 ice cream and lollipop flavors, respectively, but question 3
 cannot ask for the person's favorite salad dressing (unless
-chocolate dressing is a thing?).<br/>
+chocolate salad dressing is a thing).<br/>
 <br/>
 **This project is still a work-in-progress.**
 
