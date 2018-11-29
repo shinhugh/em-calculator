@@ -101,4 +101,7 @@ Every label/meaning/name goes on its own line. Separate the segments
 with a single empty line. Don't insert any empty lines in between
 items of the same segment. The items in a segment must be ordered
 in the same order they are portrayed within the other files.<br/>
-The sample names are not case-sensitive.
+The sample names are not case-sensitive.<br/>
+<br/>
+**It is critically important that _all_ input files are formatted
+correctly.** Otherwise, behavior is undefined.
