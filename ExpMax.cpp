@@ -31,8 +31,8 @@ ExpMax::~ExpMax() {
 
 
 
-std::string ExpMax::mostProbVal(std::string sampleName,
-  std::string paramName) {
+std::pair<bool, std::string> ExpMax::mostProbVal
+  (std::string sampleName, std::string paramName) {
 
   // translate sampleName & paramName to all upper case
   std::string sampleName_uc = toUpper(sampleName);
@@ -42,13 +42,46 @@ std::string ExpMax::mostProbVal(std::string sampleName,
   // return INVALID_NAME
   if(sampleID.find(sampleName_uc) == sampleID.end()
     || paramID.find(paramName_uc) == paramID.end()) {
-    return INVALID_NAME;
+    return std::pair<bool, std::string>(DNE_BOOL, INVALID_NAME);
   }
 
   int t = sampleID[sampleName_uc];
   int c = paramID[paramName_uc];
 
-  return inputID[ calculator->mostProbVal(t, c) - 1 ];
+  std::pair<bool, int> result = calculator->mostProbVal(t, c);
+  std::string jName = inputID[ result.second - 1 ];
+
+  return std::pair<bool, std::string>(result.first, jName);
+}
+
+
+
+std::vector<std::string> ExpMax::getSampleNames() {
+
+  std::vector<std::string> output;
+
+  std::map<std::string, int>::iterator iter = sampleID.begin();
+  while(iter != sampleID.end()) {
+    output.push_back(iter->first);
+    iter++;
+  }
+
+  return output;
+}
+
+
+
+std::vector<std::string> ExpMax::getCategoryNames() {
+
+  std::vector<std::string> output;
+
+  std::map<std::string, int>::iterator iter = paramID.begin();
+  while(iter != paramID.end()) {
+    output.push_back(iter->first);
+    iter++;
+  }
+
+  return output;
 }
 
 
@@ -119,7 +152,16 @@ void ExpMax::parseMeanings(std::string filename) {
     = parseFileStr(filename, WORDBREAK);
   std::vector<std::string> allLines(uf.size(), "");
   for(int i = 0; i < static_cast<int>(uf.size()); i++) {
-    allLines[i] = toUpper(uf[i][0]);
+
+    std::string currLine = "";
+
+    for(int j = 0; j < static_cast<int>(uf[i].size()); j++) {
+      if(j > 0) {
+        currLine += WORDBREAK;
+      }
+      currLine.append(toUpper(uf[i][j]));
+    }
+    allLines[i] = currLine;
   }
 
   // search allLines for empty line: signifies end of segment

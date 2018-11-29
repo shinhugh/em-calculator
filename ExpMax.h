@@ -3,11 +3,13 @@
 
 #define WORDBREAK ' '
 #define INVALID_NAME ""
+#define DNE_BOOL false
 
 #include <string>
 #include <vector>
 #include <map>
 #include <cctype>
+#include <utility>
 #include "EM.h"
 #include "fileParser.h"
 #include "caseChange.h"
@@ -97,8 +99,21 @@ public:
 
   // get name of input option that is most likely for the
   // specified parameter given the specified sample
-  std::string mostProbVal(std::string sampleName,
-    std::string paramName);
+  // pair.first (bool):
+  //   true if specified sample already has an input for
+  //     the specified parameter/category
+  //   false otherwise
+  // pair.second (string):
+  //   name of most likely / already input response
+  std::pair<bool, std::string> mostProbVal
+    (std::string sampleName, std::string paramName);
+
+  // get list of samples' names, sorted
+  std::vector<std::string> getSampleNames();
+
+  // get list of categories, sorted
+  std::vector<std::string> getCategoryNames();
+
 };
 
 #endif

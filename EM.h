@@ -5,9 +5,12 @@
 #define GUARANTEED_FALSE 0.0
 #define INVALID_INPUT -1
 #define LL_CHANGE_THRES 0.001
+#define INPUT_EXISTS true
+#define INPUT_DNE false
 
 #include <vector>
 #include <cmath>
+#include <utility>
 #include <iostream> // TODO DELETE
 
 /*
@@ -104,7 +107,7 @@ public:
 
   // calculate probability P(X_c = j | sample) for a specific sample
   // probability that sample t produces X_c = j
-  // j =/= 0
+  // j =/= 0, otherwise behavior is undefined
   // returns 1 if data holds X_c = j
   // returns 0 if data holds X_c = some value besides 0 and j
   // returns probability if data holds X_c = 0 (no input)
@@ -113,8 +116,14 @@ public:
 
   // determine what value of j maximizes P(X_c = j | sample)
   // which value of j is most likely for X_c given a sample
-  // use pSampleProduceVal()
-  int mostProbVal(int t, int c);
+  // uses pSampleProduceVal()
+  // pair.first (bool):
+  //   true if sample t already contains an input on category c
+  //   false if sample t doesn't contain an input on category c
+  // pair.second (int) is value of j:
+  //   input given in sample t for category c if bool is true
+  //   most likely j for sample t if bool is false
+  std::pair<bool, int> mostProbVal(int t, int c);
 };
 
 #endif

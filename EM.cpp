@@ -271,7 +271,12 @@ double EM::pSampleProduceVal(int t, int c, int j) {
 
 
 
-int EM::mostProbVal(int t, int c) {
+std::pair<bool, int> EM::mostProbVal(int t, int c) {
+
+  // if input already exists, return accordingly
+  if(data[t][c] != 0) {
+    return std::pair<bool, int>(INPUT_EXISTS, data[t][c]);
+  }
 
   double maxP = 0;
   int maxJ = -1;
@@ -284,7 +289,7 @@ int EM::mostProbVal(int t, int c) {
     }
   }
 
-  return maxJ;
+  return std::pair<bool, int>(INPUT_DNE, maxJ);
 }
 
 
