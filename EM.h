@@ -4,10 +4,11 @@
 #define GUARANTEED_TRUE 1.0
 #define GUARANTEED_FALSE 0.0
 #define INVALID_INPUT -1
-#define LL_CHANGE_THRES 0.00001
+#define LL_CHANGE_THRES 0.001
 
 #include <vector>
 #include <cmath>
+#include <iostream> // TODO DELETE
 
 /*
  * expectation maximization calculator for model with one

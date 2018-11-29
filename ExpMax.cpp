@@ -19,6 +19,7 @@ ExpMax::ExpMax(std::string initY_file, std::string initX_file,
     = this->parseData(data_file);
 
   calculator = new EM(initY, initX, data);
+
   calculator->iterateFull();
 }
 

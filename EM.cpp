@@ -3,12 +3,18 @@
 EM::EM(std::vector<double> initY,
   std::vector<std::vector<std::vector<double> > > initX,
   std::vector<std::vector<unsigned short> > data) {
+
+  k = static_cast<int>(initY.size());
+  n = static_cast<int>(initX[0].size());
+  m = static_cast<int>(initX[0][0].size()) + 1;
+  T = data.size();
+
   pY = initY;
 
   std::vector<std::vector<std::vector<double> > > initX_f
-    (initX.size(), std::vector<std::vector<double> >
-    (initX[0].size(), std::vector<double>
-    (initX[0][0].size() + 1, 0)));
+    (k, std::vector<std::vector<double> >
+    (n, std::vector<double>
+    (m + 1, 0)));
   for(int i = 0; i < k; i++) {
     for(int c = 0; c < n; c++) {
       for(int j = 1; j < m; j++) {
@@ -18,11 +24,9 @@ EM::EM(std::vector<double> initY,
   }
 
   pX = initX_f;
+
   this->data = data;
-  k = pY.size();
-  n = pX[0].size();
-  m = pX[0][0].size();
-  T = data.size();
+
   iterCount = 0;
 }
 
@@ -130,15 +134,38 @@ int EM::iterateFull() {
   int count = 0;
   bool done = false;
   double lastLL = this->logLikelihood();
+
+  // TODO REMOVE BELOW
+  std::cout << __PRETTY_FUNCTION__ << ":\n";
+  std::cout << "CHECKPOINT A" << "\n\n";
+  // TODO REMOVE ABOVE
+
   while(!done) {
     this->iterate();
     double newLL = this->logLikelihood();
+
+    // TODO REMOVE BELOW
+    std::cout << __PRETTY_FUNCTION__ << ":\n";
+    std::cout << lastLL << ", " << newLL << "\n";
+    std::cout << std::abs(lastLL - newLL) << "\n\n";
+    // TODO REMOVE ABOVE
+
     if(std::abs(lastLL - newLL) < LL_CHANGE_THRES) {
       done = true;
+
+      // TODO REMOVE BELOW
+      std::cout << __PRETTY_FUNCTION__ << ":\n";
+      std::cout << "CHECKPOINT B" << "\n\n";
+      // TODO REMOVE ABOVE
     }
     lastLL = newLL;
     count++;
   }
+
+  // TODO REMOVE BELOW
+  std::cout << __PRETTY_FUNCTION__ << ":\n";
+  std::cout << "CHECKPOINT C" << "\n\n";
+  // TODO REMOVE ABOVE
 
   // return # of iterations done by this call
   return count;
@@ -146,6 +173,7 @@ int EM::iterateFull() {
 
 
 
+/*
 double EM::logLikelihood() {
   double sum1 = 0;
   for(int t = 0; t < T; t++) {
@@ -166,6 +194,33 @@ double EM::logLikelihood() {
     }
 
     sum1 += log(sum2);
+  }
+
+  return sum1 / T;
+}
+*/
+
+
+
+double EM::logLikelihood() {
+  double sum1 = 0;
+  for(int t = 0; t < T; t++) {
+
+    double product1 = 1;
+    for(int c = 0; c < n; c++) {
+
+      if(data[t][c] != 0) {
+
+        double sum2 = 0;
+        for(int i = 0; i < k; i++) {
+          sum2 += pY[i] * pX[i][c][ data[t][c] ];
+        }
+
+        product1 *= sum2;
+      }
+    }
+
+    sum1 += log(product1);
   }
 
   return sum1 / T;
