@@ -135,37 +135,16 @@ int EM::iterateFull() {
   bool done = false;
   double lastLL = this->logLikelihood();
 
-  // TODO REMOVE BELOW
-  std::cout << __PRETTY_FUNCTION__ << ":\n";
-  std::cout << "CHECKPOINT A" << "\n\n";
-  // TODO REMOVE ABOVE
-
   while(!done) {
     this->iterate();
     double newLL = this->logLikelihood();
 
-    // TODO REMOVE BELOW
-    std::cout << __PRETTY_FUNCTION__ << ":\n";
-    std::cout << lastLL << ", " << newLL << "\n";
-    std::cout << std::abs(lastLL - newLL) << "\n\n";
-    // TODO REMOVE ABOVE
-
     if(std::abs(lastLL - newLL) < LL_CHANGE_THRES) {
       done = true;
-
-      // TODO REMOVE BELOW
-      std::cout << __PRETTY_FUNCTION__ << ":\n";
-      std::cout << "CHECKPOINT B" << "\n\n";
-      // TODO REMOVE ABOVE
     }
     lastLL = newLL;
     count++;
   }
-
-  // TODO REMOVE BELOW
-  std::cout << __PRETTY_FUNCTION__ << ":\n";
-  std::cout << "CHECKPOINT C" << "\n\n";
-  // TODO REMOVE ABOVE
 
   // return # of iterations done by this call
   return count;
@@ -256,7 +235,9 @@ double EM::pSampleProduceVal(int t, int c, int j) {
         double product = 1;
         for(int cc = 0; cc < n; cc++) {
 
-          product *= pX[ii][cc][ data[t][cc] ];
+          if(data[t][cc] != 0) {
+            product *= pX[ii][cc][ data[t][cc] ];
+          }
         }
         product *= pY[ii];
 
@@ -266,6 +247,12 @@ double EM::pSampleProduceVal(int t, int c, int j) {
           numerator = product;
         }
       }
+
+/*      // TODO REMOVE BELOW
+      std::cout << __PRETTY_FUNCTION__ << ":\n";
+      std::cout << "numerator: " << numerator << "\n";
+      std::cout << "denominator: " << denominator << "\n\n";
+      // TODO REMOVE ABOVE */
 
       double fraction1 = numerator / denominator;
 
@@ -290,6 +277,7 @@ int EM::mostProbVal(int t, int c) {
   int maxJ = -1;
   for(int j = 1; j < m; j++) {
     double currP = this->pSampleProduceVal(t, c, j);
+
     if(currP > maxP) {
       maxP = currP;
       maxJ = j;

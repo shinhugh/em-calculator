@@ -48,7 +48,7 @@ std::string ExpMax::mostProbVal(std::string sampleName,
   int t = sampleID[sampleName_uc];
   int c = paramID[paramName_uc];
 
-  return inputID[ calculator->mostProbVal(t, c) ];
+  return inputID[ calculator->mostProbVal(t, c) - 1 ];
 }
 
 
