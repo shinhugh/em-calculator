@@ -4,7 +4,20 @@ EM::EM(std::vector<double> initY,
   std::vector<std::vector<std::vector<double> > > initX,
   std::vector<std::vector<unsigned short> > data) {
   pY = initY;
-  pX = initX;
+
+  std::vector<std::vector<std::vector<double> > > initX_f
+    (initX.size(), std::vector<std::vector<double> >
+    (initX[0].size(), std::vector<double>
+    (initX[0][0].size() + 1, 0)));
+  for(int i = 0; i < k; i++) {
+    for(int c = 0; c < n; c++) {
+      for(int j = 1; j < m; j++) {
+        initX_f[i][c][j] = initX[i][c][j - 1];
+      }
+    }
+  }
+
+  pX = initX_f;
   this->data = data;
   k = pY.size();
   n = pX[0].size();
@@ -31,8 +44,8 @@ void EM::setPX(std::vector<std::vector<std::vector<double> > >
 
   for(int i = 0; i < k; i++) {
     for(int c = 0; c < n; c++) {
-      for(int j = 0; j < m; j++) {
-        pX[i][c][j] = pXUpdate[i][c][j];
+      for(int j = 1; j < m; j++) {
+        pX[i][c][j] = pXUpdate[i][c][j - 1];
       }
     }
   }
@@ -78,7 +91,7 @@ void EM::iterate() {
 
     for(int c = 0; c < n; c++) {
 
-      for(int j = 0; j < m; j++) {
+      for(int j = 1; j < m; j++) {
 
         double sum1 = 0;
         double sum2 = 0;
@@ -161,6 +174,12 @@ double EM::logLikelihood() {
 
 
 double EM::pSampleProduceVal(int t, int c, int j) {
+
+  // j = 0 -> no input
+  // probability of producing no input doesn't make sense
+  if(j == 0) {
+    return INVALID_INPUT;
+  }
 
   // if sample holds input for specified X_c and it matches j,
   // return 100%

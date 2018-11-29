@@ -51,6 +51,7 @@ private:
   EM* calculator;
 
   // same values from EM
+  // m is one less; m doesn't include j = 0
   int k;
   int n;
   int m;
@@ -64,7 +65,7 @@ private:
   // value: c value
   std::map<std::string, int> paramID;
 
-  // index: j value
+  // index: j value, where 0 is now the first valid response
   // value: input option name
   std::vector<std::string> inputID;
 

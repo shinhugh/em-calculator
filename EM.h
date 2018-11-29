@@ -3,6 +3,7 @@
 
 #define GUARANTEED_TRUE 1.0
 #define GUARANTEED_FALSE 0.0
+#define INVALID_INPUT -1
 #define LL_CHANGE_THRES 0.00001
 
 #include <vector>
@@ -25,7 +26,8 @@ private:
   // same as size of pX's middle vector
   int n;
 
-  // # of possible X values
+  // # of possible X values (including 0, no input)
+  // "actual" # of possible values would be m - 1
   // same as size of pX's innermost vector
   // must be in range of unsigned short
   int m;
@@ -54,6 +56,7 @@ private:
   // innermost vector: child (X) value
   // pX[i][c][j]
   // i.e. pX[0][2][4] = P(X_2 = 4 | Y = 0)
+  // j = 0 is included for space sake but is meaningless
   std::vector<std::vector<std::vector<double> > > pX;
 
   // # of iterations completed
@@ -69,7 +72,8 @@ public:
 
   // constructor
   // initY: initial P(Y = i) values
-  // initX: initial P(X = 1 | Y = i) values
+  // initX: initial P(X_c = j | Y = i) values
+  //   don't include P(X_c = 0 | Y = i)
   // data: all data
   // look above for format of vectors
   EM(std::vector<double> initY,
@@ -81,6 +85,7 @@ public:
   void setPY(std::vector<double> pYUpdate);
 
   // set P(X_c = j | Y = i) values
+  // don't include P(X_c = 0 | Y = i)
   // resets iteration count to 0
   void setPX(std::vector<std::vector<std::vector<double> > > pXUpdate);
 
