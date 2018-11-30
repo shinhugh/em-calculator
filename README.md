@@ -35,7 +35,18 @@ person X on the other categories.
 
 ## Get started
 
-Coming soon
+Download all files. makefile, main.cpp, and directory sampleinput,
+as well as its contents, are not necessary. All other files are
+necessary. Keep all files in the same directory.<br/>
+**ExpMax.h** is the sole interface necessary to utilize this API.
+All other files contain subroutines that should **not** be
+directly utilized. ExpMax.h alone contains sufficient interface to
+provide any functionality that this program is capable of.<br/>
+main.cpp is a sample main file provided to create an executable and
+demonstrate functionality. Feel free to refer to it.<br/>
+Directory sampleinputs contains the sample input files that go with
+the provided main.cpp file. Feel free to refer to its contents for
+formatting.<br/>
 
 ## Input files
 
