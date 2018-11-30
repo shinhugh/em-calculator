@@ -141,8 +141,8 @@ If you cannot create files for initial prior and conditional
 probabilities, you can instead provide the number of possible Y
 values when an ExpMax object is constructed. Use the second
 constructor to achieve this. The constructor will evenly distribute
-the prior and conditional probabilities over all possible Y and X
-<sub>c</sub> values.<br/>
+the prior and conditional probabilities over all possible Y and
+X<sub>c</sub> values.<br/>
 <br/>
 **It is critically important that _all_ input files are formatted
 correctly.** Otherwise, behavior is undefined.
