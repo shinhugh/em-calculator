@@ -1,3 +1,9 @@
+#define IN_DIR "/"
+#define INIT_Y "_initY.txt"
+#define INIT_X "_initX.txt"
+#define DATA "_data.txt"
+#define MEANINGS "_meanings.txt"
+
 #include <iostream>
 #include "ExpMax.h"
 
@@ -5,10 +11,29 @@
  * Command line interface for expecation-maximization utility.
  * Only use the ExpMax interface.
  */
-int main() {
+int main(int argc, char** argv) {
+
+  if(argc == 1) {
+    std::cout << "Specify name of file set." << std::endl;
+    return 0;
+  }
+
+  // file names
+  std::string fileSetName(argv[1]);
+  std::string fileDir("./inputfiles");
+
+  std::string initY_file = fileDir + IN_DIR + fileSetName
+    + INIT_Y;
+  std::string initX_file = fileDir + IN_DIR + fileSetName
+    + INIT_X;
+  std::string data_file = fileDir + IN_DIR + fileSetName
+    + DATA;
+  std::string meanings_file = fileDir + IN_DIR + fileSetName
+    + MEANINGS;
 
   // initialize EM calculator with input files
-  ExpMax em("initY.txt", "initX.txt", "data.txt", "meanings.txt");
+  ExpMax em(initY_file, initX_file, data_file, meanings_file);
+
   // pull the people/sample names and category names
   std::vector<std::string> names = em.getSampleNames();
   std::vector<std::string> categories = em.getCategoryNames();

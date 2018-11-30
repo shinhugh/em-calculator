@@ -106,6 +106,7 @@ std::vector<std::vector<std::vector<double> > >
 
   std::vector<std::vector<double> > initX_uf
     = parseFileDouble(filename, WORDBREAK);
+
   std::vector<std::vector<std::vector<double> > >
     initX(k, std::vector<std::vector<double> >
     (n, std::vector<double>(m, 0)));
