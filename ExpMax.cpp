@@ -6,15 +6,45 @@ ExpMax::ExpMax(std::string initY_file, std::string initX_file,
   // parse 4 files into vectors and pass into EM constructor
 
   // parse all sample, parameter, and input names
-  // store all sample and parameter names in upper case
   this->parseMeanings(meaning_file);
 
+  // parse initial P(Y = i)
   std::vector<double> initY = this->parseInitY(initY_file);
   k = initY.size();
 
+  // parse initial P(X_c = j | Y = i)
   std::vector<std::vector<std::vector<double> > > initX
     = this->parseInitX(initX_file);
 
+  // parse data
+  std::vector<std::vector<unsigned short> > data
+    = this->parseData(data_file);
+
+  // create calculator
+  calculator = new EM(initY, initX, data);
+
+  // iterate until convergence
+  calculator->iterateFull();
+}
+
+ExpMax::ExpMax(int hiddenParamCount, std::string data_file,
+  std::string meaning_file) {
+
+  k = hiddenParamCount;
+
+  // parse meanings file
+  this->parseMeanings(meaning_file);
+
+  // create initY vector from given k
+  std::vector<double> initY(k, ((double) 1) / k);
+
+  // create initX vector from given k, n, and m
+  std::vector<std::vector<std::vector<double> > > initX
+    (k, std::vector<std::vector<double> >
+    (n, std::vector<double>
+    (m, ((double) 1) / m)));
+
+  // parse data
   std::vector<std::vector<unsigned short> > data
     = this->parseData(data_file);
 
