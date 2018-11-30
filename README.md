@@ -47,6 +47,9 @@ demonstrate functionality. Feel free to refer to it.<br/>
 Directory sampleinputs contains the sample input files that go with
 the provided main.cpp file. Feel free to refer to its contents for
 formatting.<br/>
+Output of exmax.exe with argument "music" after compiling with
+sample main.cpp:<br/>
+![Screenshot of sample main.cpp](sampleinput/sample_screenshot.jpg)
 
 ## Input files
 
