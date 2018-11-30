@@ -67,6 +67,8 @@ the sole parent of all X parameters. There can be as many possible
 *i* values as desired.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
+If a number of possible Y values is explicitly specified into the
+ExpMax constructor, this file isn't necessary.<br/>
 **Format**:<br/>
 Place each value on a new line, going down from *i* = 1
 to whatever number of options the user desires.
@@ -83,6 +85,8 @@ Make sure that the range of Y values is consistent with what is
 provided in the prior probability file.<br/>
 These values don't necessarily have to be true; they serve as
 starting points that the EM algorithm will start from.<br/>
+If a number of possible Y values is explicitly specified into the
+ExpMax constructor, this file isn't necessary.<br/>
 **Format**:<br/>
 Place each probability P(X<sub>c</sub> = *j* \| Y = *i*)
 on the line represented by *i* and *c*. The first line represents
@@ -132,6 +136,13 @@ with a single empty line. Don't insert any empty lines in between
 items of the same segment. The items in a segment must be ordered
 in the same order they are portrayed within the other files.<br/>
 The sample names are not case-sensitive.<br/>
+<br/>
+If you cannot create files for initial prior and conditional
+probabilities, you can instead provide the number of possible Y
+values when an ExpMax object is constructed. Use the second
+constructor to achieve this. The constructor will evenly distribute
+the prior and conditional probabilities over all possible Y and X
+<sub>c</sub> values.<br/>
 <br/>
 **It is critically important that _all_ input files are formatted
 correctly.** Otherwise, behavior is undefined.

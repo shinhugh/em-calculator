@@ -99,6 +99,15 @@ public:
   ExpMax(std::string initY_file, std::string initX_file,
     std::string data_file, std::string meaning_file);
 
+  // alternate constructor that doesn't use initY_file
+  // or initX_file
+  // assumes even distribution across all initial prior and
+  // conditional probabilities
+  // instead, a k value (total # of possible Y values) must
+  // be explicitly specified
+  ExpMax(int hiddenParamCount, std::string data_file,
+    std::string meaning_file);
+
   // destructor
   ~ExpMax();
 
