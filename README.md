@@ -50,8 +50,7 @@ formatting.<br/>
 Output of exmax.exe with argument "music" after compiling with
 sample main.cpp:<br/>
 <br/>
-<img src="sampleinput/sample_screenshot.jpg" width="50%"
-  align="middle">
+<img src="sampleinput/sample_screenshot.jpg" width="75%">
 
 ## Input files
 
