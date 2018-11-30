@@ -152,35 +152,6 @@ int EM::iterateFull() {
 
 
 
-/*
-double EM::logLikelihood() {
-  double sum1 = 0;
-  for(int t = 0; t < T; t++) {
-
-    double sum2 = 0;
-    for(int i = 0; i < k; i++) {
-
-      double product = 1;
-      for(int c = 0; c < n; c++) {
-
-        if(data[t][c] != 0) {
-          product *= pX[c][i][ data[t][c] ];
-        }
-      }
-
-      product *= pY[i];
-      sum2 += product;
-    }
-
-    sum1 += log(sum2);
-  }
-
-  return sum1 / T;
-}
-*/
-
-
-
 double EM::logLikelihood() {
   double sum1 = 0;
   for(int t = 0; t < T; t++) {
@@ -290,6 +261,20 @@ std::pair<bool, int> EM::mostProbVal(int t, int c) {
   }
 
   return std::pair<bool, int>(INPUT_DNE, maxJ);
+}
+
+
+
+std::vector<int> EM::noResponseList(int t) {
+
+  std::vector<int> output;
+  for(int c = 0; c < n; c++) {
+    if(data[t][c] == 0) {
+      output.push_back(c);
+    }
+  }
+
+  return output;
 }
 
 

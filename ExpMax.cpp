@@ -86,6 +86,21 @@ std::vector<std::string> ExpMax::getCategoryNames() {
 
 
 
+std::vector<std::string> ExpMax::noResponseList
+  (std::string sampleName) {
+
+    std::vector<int> params
+      = calculator->noResponseList(sampleID[sampleName]);
+    std::vector<std::string> output;
+    for(int i = 0; i < static_cast<int>(params.size()); i++) {
+      output.push_back(paramID_rev[params[i]]);
+    }
+
+    return output;
+}
+
+
+
 std::vector<double> ExpMax::parseInitY(std::string filename) {
 
   std::vector<std::vector<double> > initY_uf
@@ -209,6 +224,7 @@ void ExpMax::parseMeanings(std::string filename) {
 
   for(int i = 0; i < static_cast<int>(categories.size()); i++) {
     paramID[ categories[i] ] = i;
+    paramID_rev.push_back(categories[i]);
   }
 
   for(int i = 0; i < static_cast<int>(sampleNames.size()); i++) {

@@ -58,12 +58,12 @@ to whatever number of options the user desires.
 
 ### Initial conditional probability values
 
-These values hold P(X<sub>c</sub> = *j* \| Y = *i*). X is the
-observed parameter, and *j* is the response to that parameter that a
-person may make.<br/>
-For example, one such value may represent the probability that
-person #3 (*c* = 3) gives response #2 (*j* = 2) given that his/her
-hidden parameter is #4 (*i* = 4).<br/>
+These values hold P(X<sub>c</sub> = *j* \| Y = *i*). X<sub>c</sub>
+is the observed parameter, and *j* is the response to that parameter
+that a person may make.<br/>
+For example, one such value may represent the probability that a
+person gives response #2 (*j* = 2) to category #3 (*c* = 3) given
+that his/her hidden parameter is #4 (*i* = 4).<br/>
 Make sure that the range of Y values is consistent with what is
 provided in the prior probability file.<br/>
 These values don't necessarily have to be true; they serve as

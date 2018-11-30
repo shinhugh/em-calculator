@@ -124,6 +124,9 @@ public:
   //   input given in sample t for category c if bool is true
   //   most likely j for sample t if bool is false
   std::pair<bool, int> mostProbVal(int t, int c);
+
+  // get list of categories specified sample lacks input for
+  std::vector<int> noResponseList(int t);
 };
 
 #endif

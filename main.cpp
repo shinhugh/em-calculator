@@ -13,15 +13,18 @@
  */
 int main(int argc, char** argv) {
 
+  // must specify file names prefix
   if(argc == 1) {
     std::cout << "Specify name of file set." << std::endl;
     return 0;
   }
 
-  // file names
+  // file names prefix
   std::string fileSetName(argv[1]);
-  std::string fileDir("./inputfiles");
+  // file location directory
+  std::string fileDir("./sampleinput"); // <- change if necessary
 
+  // setting up file names
   std::string initY_file = fileDir + IN_DIR + fileSetName
     + INIT_Y;
   std::string initX_file = fileDir + IN_DIR + fileSetName
@@ -38,11 +41,7 @@ int main(int argc, char** argv) {
   std::vector<std::string> names = em.getSampleNames();
   std::vector<std::string> categories = em.getCategoryNames();
 
-
-
   std::cout << std::endl;
-
-
 
   // list all people/sample names
   std::cout << "Names:\n";
@@ -50,11 +49,7 @@ int main(int argc, char** argv) {
     std::cout << "- " << names[i] << std::endl;
   }
 
-
-
   std::cout << std::endl;
-
-
 
   // list all category names
   std::cout << "Categories:\n";
@@ -62,61 +57,32 @@ int main(int argc, char** argv) {
     std::cout << "- " << categories[i] << std::endl;
   }
 
-
-
-  // initialize strings for testing
-  std::string name1 = names[3]; // David
-  std::string category1 = categories[0];
-  std::string category2 = categories[1];
-  std::string category3 = categories[2];
-
-
-
   std::cout << std::endl;
 
+  // feel free to change person number, as long as index
+  // isn't out of bounds
+  std::string currName = names[2];
 
-
-  // David dislikes Book1
-  std::pair<bool, std::string> book1 = em.mostProbVal(name1, category1);
-  if(book1.first == true) {
-    // if David already gave an input
-    std::cout << name1 << " responded that he/she did " << book1.second
-      << " " << category1 << ".\n";
+  // categories person did not respond to
+  std::vector<std::string> noResponses = em.noResponseList(currName);
+  std::cout << currName << " did not respond to:\n";
+  for(int i = 0; i < static_cast<int>(noResponses.size()); i++) {
+    std::cout << noResponses[i] << std::endl;
   }
-  else {
-    // if David gave no input
-    std::cout << name1 << " is most likely to "
-      << book1.second << " " << category1 << ".\n";
-  }
+  std::cout << std::endl;
 
-
-
-  // David likes Book2
-  std::pair<bool, std::string> book2 = em.mostProbVal(name1, category2);
-  if(book2.first == true) {
-    // if David already gave an input
-    std::cout << name1 << " responded that he/she did " << book2.second
-      << " " << category2 << ".\n";
-  }
-  else {
-    // if David gave no input
-    std::cout << name1 << " is most likely to "
-      << book2.second << " " << category2 << ".\n";
-  }
-
-
-
-  // David hasn't read Book3
-  std::pair<bool, std::string> book3 = em.mostProbVal(name1, category3);
-  if(book3.first == true) {
-    // if David already gave an input
-    std::cout << name1 << " responded that he/she did " << book3.second
-      << " " << category3 << ".\n";
-  }
-  else {
-    // if David gave no input
-    std::cout << name1 << " is most likely to "
-      << book3.second << " " << category3 << ".\n";
+  // print given response/most likely response for all categories
+  for(int i = 0; i < static_cast<int>(categories.size()); i++) {
+    std::pair<bool, std::string> result
+      = em.mostProbVal(currName, categories[i]);
+    if(result.first) {
+      std::cout << currName << " responded that " << categories[i]
+        << " goes well with " << result.second << " moods.\n";
+    } else {
+      std::cout << currName << " is most likely to feel that "
+        << categories[i] << " goes well with " << result.second
+        << " moods.\n";
+    }
   }
 
   return 0;

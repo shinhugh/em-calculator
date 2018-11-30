@@ -67,6 +67,11 @@ private:
   // value: c value
   std::map<std::string, int> paramID;
 
+  // duplicate of paramID map but key-value reversed
+  // index: c-value
+  // value: category name
+  std::vector<std::string> paramID_rev;
+
   // index: j value, where 0 is now the first valid response
   // value: input option name
   std::vector<std::string> inputID;
@@ -113,6 +118,9 @@ public:
 
   // get list of categories, sorted
   std::vector<std::string> getCategoryNames();
+
+  // get list of categories specified sample lacks input for
+  std::vector<std::string> noResponseList(std::string sampleName);
 
 };
 
