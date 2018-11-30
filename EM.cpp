@@ -219,12 +219,6 @@ double EM::pSampleProduceVal(int t, int c, int j) {
         }
       }
 
-/*      // TODO REMOVE BELOW
-      std::cout << __PRETTY_FUNCTION__ << ":\n";
-      std::cout << "numerator: " << numerator << "\n";
-      std::cout << "denominator: " << denominator << "\n\n";
-      // TODO REMOVE ABOVE */
-
       double fraction1 = numerator / denominator;
 
       sum1 += fraction1 * pX[i][c][j];

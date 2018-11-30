@@ -11,7 +11,6 @@
 #include <vector>
 #include <cmath>
 #include <utility>
-#include <iostream> // TODO DELETE
 
 /*
  * expectation maximization calculator for model with one
