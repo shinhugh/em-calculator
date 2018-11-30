@@ -1,0 +1,26 @@
+Pop
+Hip Hop
+Alternative
+Metal
+Jazz
+Classical
+House
+Trap
+Future Bass
+Drumstep
+
+Happy
+Sad
+Mad
+Excited
+Relaxed
+Motivated
+
+Alex
+Bob
+Chris
+David
+Emily
+Fiona
+Greg
+Hugh
