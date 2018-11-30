@@ -49,7 +49,9 @@ the provided main.cpp file. Feel free to refer to its contents for
 formatting.<br/>
 Output of exmax.exe with argument "music" after compiling with
 sample main.cpp:<br/>
-![Screenshot of sample main.cpp](sampleinput/sample_screenshot.jpg)
+<br/>
+<img src="sampleinput/sample_screenshot.jpg" width="50%"
+  align="middle">
 
 ## Input files
 
