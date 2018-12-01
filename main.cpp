@@ -28,6 +28,7 @@ int main(int argc, char **argv)
   std::string data_file = fileDir + IN_DIR + fileSetName + DATA;
   std::string meanings_file = fileDir + IN_DIR + fileSetName + MEANINGS;
 
+  int numFiles = 4;
   int responseNum = -1;
   while (!(responseNum == 0 || responseNum == 1))
   {
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
   ExpMax em(initY_file, initX_file, data_file, meanings_file);
   if (responseNum == 1)
   {
+    numFiles = 2;
     ExpMax em(4, data_file, meanings_file);
   }
 
@@ -114,22 +116,23 @@ int main(int argc, char **argv)
 
     std::vector<std::string> names = em.getSampleNames();
     std::vector<std::string> categories = em.getCategoryNames();
-    std::vector<std::string> inputMeanings = {"Happy", "Sad", "Mad", "Excited", "Relaxed", "Motivated"};
+    std::vector<std::string> inputMeanings = {"Happy","Sad", "Mad", "Excited", "Relaxed", "Motivated"};
     std::vector<int> userInputs;
     // std::vector<std::string> inputMeanings = em.getInputMeanings();
     for (int i = 0; i < categories.size(); i++)
     {
       int responseNum = -1;
-      std::cout << "How do you feel about " << categories[i]<< "?\n";
+      std::cout << "How do you feel about " << categories[i] << "?\n";
       while (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
       {
 
+        std::cout << "(" << 0 << ") - "
+                  << "skip" << std::endl;
         for (int i = 0; i < static_cast<int>(inputMeanings.size()); i++)
         {
-          std::cout << "(" << i << ") - " << inputMeanings[i] << std::endl;
+          std::cout << "(" << i+1 << ") - " << inputMeanings[i] << std::endl;
         }
-        std::cout << "(" << inputMeanings.size() << ") - "
-                  << "skip" << std::endl;
+
         std::cin >> responseNum;
         if (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
         {
@@ -145,15 +148,38 @@ int main(int argc, char **argv)
             << inputName;
     outfile.close();
     std::ofstream outfile2;
-    
+
     outfile2.open(data_file, std::ios_base::app);
     std::string outMsg = "\n";
-    for (int i = 0; i << userInputs.size(); i++)
+    for (int i = 0; i < userInputs.size(); i++)
     {
       outMsg.append(std::to_string(userInputs[i]) + " ");
     }
     outfile2 << outMsg;
     outfile2.close();
+    ExpMax em(initY_file, initX_file, data_file, meanings_file);
+    if (numFiles == 2)
+    {
+      ExpMax em(4, data_file, meanings_file);
+    }
+
+    for (int i = 0; i < categories.size(); i++)
+    {
+      std::string selectedCategory = categories[i];
+      std::pair<bool, std::string> result = em.mostProbVal(inputName, selectedCategory);
+      if (result.first)
+      {
+        std::cout << inputName << " responded that " << selectedCategory
+                  << " goes well with " << result.second << " moods.\n\n";
+      }
+      else
+      {
+        std::cout << inputName << " is most likely to feel that "
+                  << selectedCategory << " goes well with " << result.second
+                  << " moods.\n\n";
+      }
+    }
   }
+
   return 0;
 }
