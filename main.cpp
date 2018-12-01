@@ -42,56 +42,118 @@ int main(int argc, char **argv)
   {
     ExpMax em(4, data_file, meanings_file);
   }
-  while (true)
+
+  responseNum = -1;
+  while (!(responseNum == 0 || responseNum == 1))
   {
+    std::cout << "Would you like to take the survey or view the results?\n";
+    std::cout << "(0) View the results\n";
+    std::cout << "(1) Take the survey\n";
+    std::cin >> responseNum;
+  }
+
+  if (!responseNum)
+  {
+    while (true)
+    {
+      std::vector<std::string> names = em.getSampleNames();
+      // list all people/sample names
+      responseNum = -1;
+      while (!(responseNum >= 0 && responseNum < names.size()))
+      {
+        std::cout << "Choose a Name:\n";
+        for (int i = 0; i < static_cast<int>(names.size()); i++)
+        {
+          std::cout << "(" << i << ")"
+                    << " - " << names[i] << std::endl;
+        }
+
+        std::cin >> responseNum;
+        if (!(responseNum >= 0 && responseNum < names.size()))
+        {
+          std::cout << "Invalid input\n";
+        }
+      }
+      std::string selectedName = names[responseNum];
+
+      responseNum = -1;
+      std::vector<std::string> categories = em.getCategoryNames();
+      while (!(responseNum >= 0 && responseNum < categories.size()))
+      {
+        std::cout << "Please choose a category.\n";
+        for (int i = 0; i < static_cast<int>(categories.size()); i++)
+        {
+          std::cout << "(" << i << ") - " << categories[i] << std::endl;
+        }
+        std::cin >> responseNum;
+        if (!(responseNum >= 0 && responseNum < categories.size()))
+        {
+          std::cout << "Invalid input\n";
+        }
+      }
+      std::string selectedCategory = categories[responseNum];
+      std::pair<bool, std::string> result = em.mostProbVal(selectedName, selectedCategory);
+      if (result.first)
+      {
+        std::cout << selectedName << " responded that " << selectedCategory
+                  << " goes well with " << result.second << " moods.\n\n";
+      }
+      else
+      {
+        std::cout << selectedName << " is most likely to feel that "
+                  << selectedCategory << " goes well with " << result.second
+                  << " moods.\n\n";
+      }
+    }
+  }
+  else
+  {
+    std::string inputName = "";
+    std::cout << "Enter your name: \n";
+    std::cin >> inputName;
+
     std::vector<std::string> names = em.getSampleNames();
-    // list all people/sample names
-    responseNum = -1;
-    while (!(responseNum >= 0 && responseNum < names.size()))
-    {
-      std::cout << "Choose a Name:\n";
-      for (int i = 0; i < static_cast<int>(names.size()); i++)
-      {
-        std::cout << "(" << i << ")"
-                  << " - " << names[i] << std::endl;
-      }
-
-      std::cin >> responseNum;
-      if (!(responseNum >= 0 && responseNum < names.size()))
-      {
-        std::cout << "Invalid input\n";
-      }
-    }
-    std::string selectedName = names[responseNum];
-
-    responseNum = -1;
     std::vector<std::string> categories = em.getCategoryNames();
-    while (!(responseNum >= 0 && responseNum < categories.size()))
+    std::vector<std::string> inputMeanings = {"Happy", "Sad", "Mad", "Excited", "Relaxed", "Motivated"};
+    std::vector<int> userInputs;
+    // std::vector<std::string> inputMeanings = em.getInputMeanings();
+    for (int i = 0; i < categories.size(); i++)
     {
-      std::cout << "Please choose a category.\n";
-      for (int i = 0; i < static_cast<int>(categories.size()); i++)
+      int responseNum = -1;
+      std::cout << "How do you feel about " << categories[i]<< "?\n";
+      while (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
       {
-        std::cout << "(" << i << ") - " << categories[i] << std::endl;
+
+        for (int i = 0; i < static_cast<int>(inputMeanings.size()); i++)
+        {
+          std::cout << "(" << i << ") - " << inputMeanings[i] << std::endl;
+        }
+        std::cout << "(" << inputMeanings.size() << ") - "
+                  << "skip" << std::endl;
+        std::cin >> responseNum;
+        if (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
+        {
+          std::cout << "Invalid input\n";
+        }
       }
-      std::cin >> responseNum;
-      if (!(responseNum >= 0 && responseNum < categories.size()))
-      {
-        std::cout << "Invalid input\n";
-      }
+      userInputs.push_back(responseNum);
     }
-    std::string selectedCategory = categories[responseNum];
-    std::pair<bool, std::string> result = em.mostProbVal(selectedName, selectedCategory);
-    if (result.first)
+    std::ofstream outfile;
+
+    outfile.open(meanings_file, std::ios_base::app);
+    outfile << "\n"
+            << inputName;
+    outfile.close();
+    std::ofstream outfile2;
+    
+    outfile2.open(data_file, std::ios_base::app);
+    std::string outMsg = "\n";
+    for (int i = 0; i << userInputs.size(); i++)
     {
-      std::cout << selectedName << " responded that " << selectedCategory
-                << " goes well with " << result.second << " moods.\n\n";
+      outMsg.append(std::to_string(userInputs[i]) + " ");
     }
-    else
-    {
-      std::cout << selectedName << " is most likely to feel that "
-                << selectedCategory << " goes well with " << result.second
-                << " moods.\n\n";
-    }
+    outfile2 << outMsg;
+    outfile2.close();
   }
   return 0;
 }
