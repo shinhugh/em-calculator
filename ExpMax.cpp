@@ -116,6 +116,12 @@ std::vector<std::string> ExpMax::getCategoryNames() {
 
 
 
+std::vector<std::string> ExpMax::getInputNames() {
+  return inputID;
+}
+
+
+
 std::vector<std::string> ExpMax::noResponseList
   (std::string sampleName) {
 

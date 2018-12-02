@@ -3,7 +3,7 @@
 #define INIT_X "_initX.txt"
 #define DATA "_data.txt"
 #define MEANINGS "_meanings.txt"
-
+#include <limits>
 #include <iostream>
 #include "ExpMax.h"
 
@@ -36,6 +36,12 @@ int main(int argc, char **argv)
     std::cout << "(0) 4 files (data, initX, initY, meanings)\n";
     std::cout << "(1) 2 files (data, meanings)\n";
     std::cin >> responseNum;
+    if (std::cin.fail())
+    {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      responseNum = -1;
+    }
   }
 
   ExpMax em(initY_file, initX_file, data_file, meanings_file);
@@ -52,6 +58,12 @@ int main(int argc, char **argv)
     std::cout << "(0) View the results\n";
     std::cout << "(1) Take the survey\n";
     std::cin >> responseNum;
+    if (std::cin.fail())
+    {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      responseNum = -1;
+    }
   }
 
   if (!responseNum)
@@ -71,6 +83,12 @@ int main(int argc, char **argv)
         }
 
         std::cin >> responseNum;
+        if (std::cin.fail())
+        {
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          responseNum = -1;
+        }
         if (!(responseNum >= 0 && responseNum < names.size()))
         {
           std::cout << "Invalid input\n";
@@ -88,6 +106,12 @@ int main(int argc, char **argv)
           std::cout << "(" << i << ") - " << categories[i] << std::endl;
         }
         std::cin >> responseNum;
+        if (std::cin.fail())
+        {
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          responseNum = -1;
+        }
         if (!(responseNum >= 0 && responseNum < categories.size()))
         {
           std::cout << "Invalid input\n";
@@ -116,9 +140,8 @@ int main(int argc, char **argv)
 
     std::vector<std::string> names = em.getSampleNames();
     std::vector<std::string> categories = em.getCategoryNames();
-    std::vector<std::string> inputMeanings = {"Happy","Sad", "Mad", "Excited", "Relaxed", "Motivated"};
     std::vector<int> userInputs;
-    // std::vector<std::string> inputMeanings = em.getInputMeanings();
+    std::vector<std::string> inputMeanings = em.getInputNames();
     for (int i = 0; i < categories.size(); i++)
     {
       int responseNum = -1;
@@ -130,10 +153,16 @@ int main(int argc, char **argv)
                   << "skip" << std::endl;
         for (int i = 0; i < static_cast<int>(inputMeanings.size()); i++)
         {
-          std::cout << "(" << i+1 << ") - " << inputMeanings[i] << std::endl;
+          std::cout << "(" << i + 1 << ") - " << inputMeanings[i] << std::endl;
         }
 
         std::cin >> responseNum;
+        if (std::cin.fail())
+        {
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          responseNum = -1;
+        }
         if (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
         {
           std::cout << "Invalid input\n";
