@@ -122,11 +122,15 @@ public:
   std::pair<bool, std::string> mostProbVal
     (std::string sampleName, std::string paramName);
 
-  // get list of samples' names, sorted
+  // get list of samples' names, sorted alphabetically
   std::vector<std::string> getSampleNames();
 
-  // get list of categories, sorted
+  // get list of categories, sorted alphabetically
   std::vector<std::string> getCategoryNames();
+
+  // get list of valid inputs (all possible X_c = j values)
+  // sorted by order given in meanings file
+  std::vector<std::string> getInputNames();
 
   // get list of categories specified sample lacks input for
   std::vector<std::string> noResponseList(std::string sampleName);

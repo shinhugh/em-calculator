@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     std::vector<std::string> names = em.getSampleNames();
     // list all people/sample names
     responseNum = -1;
-    while (!(responseNum >= 0 && responseNum < names.size()))
+    while (!(responseNum >= 0 && responseNum < static_cast<int>(names.size())))
     {
       std::cout << "Choose a Name:\n";
       for (int i = 0; i < static_cast<int>(names.size()); i++)
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
       }
 
       std::cin >> responseNum;
-      if (!(responseNum >= 0 && responseNum < names.size()))
+      if (!(responseNum >= 0 && responseNum < static_cast<int>(names.size())))
       {
         std::cout << "Invalid input\n";
       }
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 
     responseNum = -1;
     std::vector<std::string> categories = em.getCategoryNames();
-    while (!(responseNum >= 0 && responseNum < categories.size()))
+    while (!(responseNum >= 0 && responseNum < static_cast<int>(categories.size())))
     {
       std::cout << "Please choose a category.\n";
       for (int i = 0; i < static_cast<int>(categories.size()); i++)
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
         std::cout << "(" << i << ") - " << categories[i] << std::endl;
       }
       std::cin >> responseNum;
-      if (!(responseNum >= 0 && responseNum < categories.size()))
+      if (!(responseNum >= 0 && responseNum < static_cast<int>(categories.size())))
       {
         std::cout << "Invalid input\n";
       }
