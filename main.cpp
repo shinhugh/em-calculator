@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   // file names prefix
   std::string fileSetName(argv[1]);
   // file location directory
-  std::string fileDir("./sampleinput"); // <- change if necessary
+  std::string fileDir("./personalityinput"); // <- change if necessary
 
   // setting up file names
   std::string initY_file = fileDir + IN_DIR + fileSetName + INIT_Y;
@@ -235,6 +235,9 @@ int main(int argc, char **argv)
       }
       userInputs.push_back(responseNum);
     }
+
+    std::cout << "\nPlease wait while we calculate everything...\n";
+
     std::ofstream outfile;
 
     outfile.open(meanings_file.c_str(), std::ios_base::app);
@@ -257,6 +260,8 @@ int main(int argc, char **argv)
     outfile2.close();
 
     ExpMax em(4, data_file, meanings_file);
+
+    std::cout << std::endl;
 
     for (int i = 0; i < static_cast<int>(categories.size()); i++)
     {
