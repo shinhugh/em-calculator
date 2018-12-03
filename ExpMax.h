@@ -125,8 +125,6 @@ public:
 
   // get list of categories, sorted alphabetically
   std::vector<std::string> getCategoryNames();
-  // get list of input meanings
-  std::vector<std::string> getInputMeanings();
 
   // get list of valid inputs (all possible X_c = j values)
   // sorted by order given in meanings file

@@ -3,6 +3,8 @@
 #define INIT_X "_initX.txt"
 #define DATA "_data.txt"
 #define MEANINGS "_meanings.txt"
+#define CATEGORIES_COUNT 48
+#define INPUTS_COUNT 5
 #include <limits>
 #include <iostream>
 #include <sstream>
@@ -50,7 +52,7 @@ int main(int argc, char **argv)
   //   numFiles = 2;
   //   ExpMax em(4, data_file, meanings_file);
   // }
-  ExpMax em(4, data_file, meanings_file);
+
   int responseNum = -1;
   while (!(responseNum == 0 || responseNum == 1))
   {
@@ -68,6 +70,8 @@ int main(int argc, char **argv)
 
   if (!responseNum)
   {
+    ExpMax em(4, data_file, meanings_file);
+
     while (true)
     {
       std::vector<std::string> names = em.getSampleNames();
@@ -141,11 +145,11 @@ int main(int argc, char **argv)
   }
   else
   {
+
     std::string inputName = "";
     std::cout << "Enter your name: \n";
     std::cin >> inputName;
 
-    std::vector<std::string> names = em.getSampleNames();
     const char* categories_arr[] = {"Test the quality of parts before shipment",
                                            "Study the structure of the human body",
                                            "Conduct a musical choir",
@@ -194,9 +198,15 @@ int main(int argc, char **argv)
                                            "Help elderly people with their daily activities",
                                            "Run a toy store",
                                            "Keep shipping and receiving records"};
-    std::vector<std::string> categories(categories_arr, categories_arr + 48);
+    std::vector<std::string> categories(categories_arr, categories_arr + CATEGORIES_COUNT);
     std::vector<int> userInputs;
-    std::vector<std::string> inputMeanings = em.getInputNames();
+
+    const char* inputMeanings_arr[] = {"Angry",
+                                       "Upset",
+                                       "Indifferent",
+                                       "Enjoyable",
+                                       "Exciting"};
+    std::vector<std::string> inputMeanings(inputMeanings_arr, inputMeanings_arr + INPUTS_COUNT);
     for (int i = 0; i < static_cast<int>(categories.size()); i++)
     {
       int responseNum = -1;
@@ -245,6 +255,8 @@ int main(int argc, char **argv)
     outMsg = outMsg.substr(0, outMsg.size() - 1);
     outfile2 << outMsg;
     outfile2.close();
+
+    ExpMax em(4, data_file, meanings_file);
 
     for (int i = 0; i < static_cast<int>(categories.size()); i++)
     {
