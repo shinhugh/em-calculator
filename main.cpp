@@ -5,6 +5,7 @@
 #define MEANINGS "_meanings.txt"
 #include <limits>
 #include <iostream>
+#include <sstream>
 #include "ExpMax.h"
 
 // Command line interface for expecation-maximization utility.
@@ -72,9 +73,9 @@ int main(int argc, char **argv)
       std::vector<std::string> names = em.getSampleNames();
       // list all people/sample names
       responseNum = -1;
-      while (!(responseNum >= 0 && responseNum < names.size()))
+      while (!(responseNum >= 0 && responseNum < static_cast<int>(names.size())))
       {
-        std::cout << "Choose a Name:\n";
+        std::cout << "\nChoose a Name:\n";
         for (int i = 0; i < static_cast<int>(names.size()); i++)
         {
           std::cout << "(" << i << ")"
@@ -88,7 +89,7 @@ int main(int argc, char **argv)
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           responseNum = -1;
         }
-        if (!(responseNum >= 0 && responseNum < names.size()))
+        if (!(responseNum >= 0 && responseNum < static_cast<int>(names.size())))
         {
           std::cout << "Invalid input\n";
         }
@@ -97,9 +98,9 @@ int main(int argc, char **argv)
 
       responseNum = -1;
       std::vector<std::string> categories = em.getCategoryNames();
-      while (!(responseNum >= 0 && responseNum < categories.size()))
+      while (!(responseNum >= 0 && responseNum < static_cast<int>(categories.size())))
       {
-        std::cout << "Please choose a category.\n";
+        std::cout << "\nPlease choose a category.\n";
         for (int i = 0; i < static_cast<int>(categories.size()); i++)
         {
           std::cout << "(" << i << ") - " << categories[i] << std::endl;
@@ -111,7 +112,7 @@ int main(int argc, char **argv)
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           responseNum = -1;
         }
-        if (!(responseNum >= 0 && responseNum < categories.size()))
+        if (!(responseNum >= 0 && responseNum < static_cast<int>(categories.size())))
         {
           std::cout << "Invalid input\n";
         }
@@ -145,7 +146,7 @@ int main(int argc, char **argv)
     std::cin >> inputName;
 
     std::vector<std::string> names = em.getSampleNames();
-    std::vector<std::string> categories = {"Test the quality of parts before shipment",
+    const char* categories_arr[] = {"Test the quality of parts before shipment",
                                            "Study the structure of the human body",
                                            "Conduct a musical choir",
                                            "Give career guidance to people",
@@ -193,13 +194,14 @@ int main(int argc, char **argv)
                                            "Help elderly people with their daily activities",
                                            "Run a toy store",
                                            "Keep shipping and receiving records"};
+    std::vector<std::string> categories(categories_arr, categories_arr + 48);
     std::vector<int> userInputs;
     std::vector<std::string> inputMeanings = em.getInputNames();
-    for (int i = 0; i < categories.size(); i++)
+    for (int i = 0; i < static_cast<int>(categories.size()); i++)
     {
       int responseNum = -1;
-      std::cout << "How do you feel about " << categories[i] << "?\n";
-      while (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
+      std::cout << "\nHow do you feel about " << categories[i] << "?\n";
+      while (!(responseNum >= 0 && responseNum <= static_cast<int>(inputMeanings.size())))
       {
 
         std::cout << "(" << 0 << ") - "
@@ -216,7 +218,7 @@ int main(int argc, char **argv)
           std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           responseNum = -1;
         }
-        if (!(responseNum >= 0 && responseNum <= inputMeanings.size()))
+        if (!(responseNum >= 0 && responseNum <= static_cast<int>(inputMeanings.size())))
         {
           std::cout << "Invalid input\n";
         }
@@ -225,22 +227,26 @@ int main(int argc, char **argv)
     }
     std::ofstream outfile;
 
-    outfile.open(meanings_file, std::ios_base::app);
+    outfile.open(meanings_file.c_str(), std::ios_base::app);
     outfile << "\n"
             << inputName;
     outfile.close();
     std::ofstream outfile2;
 
-    outfile2.open(data_file, std::ios_base::app);
+    outfile2.open(data_file.c_str(), std::ios_base::app);
     std::string outMsg = "\n";
-    for (int i = 0; i < userInputs.size(); i++)
+    for (int i = 0; i < static_cast<int>(userInputs.size()); i++)
     {
-      outMsg.append(std::to_string(userInputs[i]) + " ");
+      // translate int to string
+      std::ostringstream ss;
+      ss << userInputs[i];
+      outMsg.append(ss.str() + " ");
     }
+    outMsg = outMsg.substr(0, outMsg.size() - 1);
     outfile2 << outMsg;
     outfile2.close();
 
-    for (int i = 0; i < categories.size(); i++)
+    for (int i = 0; i < static_cast<int>(categories.size()); i++)
     {
       std::string selectedCategory = categories[i];
       std::pair<bool, std::string> result = em.mostProbVal(inputName, selectedCategory);

@@ -83,11 +83,11 @@ private:
   std::vector<double> parseInitY(std::string filename);
 
   // call 3rd
-  std::vector<std::vector<std::vector<double>>>
+  std::vector<std::vector<std::vector<double> > >
   parseInitX(std::string filename);
 
   // call 4th
-  std::vector<std::vector<unsigned short>>
+  std::vector<std::vector<unsigned short> >
   parseData(std::string filename);
 
   // call 1st
