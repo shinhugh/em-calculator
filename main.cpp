@@ -139,7 +139,7 @@ int main(int argc, char **argv)
     std::cin >> inputName;
 
     std::vector<std::string> names = em.getSampleNames();
-    std::vector<std::string> categories = em.getCategoryNames();
+    std::vector<std::string> categories = {"Pop","Hip Hop","Alternative","Metal","Jazz","Classical","House","Trap","Future Bass","Drumstep"};
     std::vector<int> userInputs;
     std::vector<std::string> inputMeanings = em.getInputNames();
     for (int i = 0; i < categories.size(); i++)
