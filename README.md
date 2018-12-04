@@ -58,9 +58,9 @@ categories.
 ## Get started
 
 Download all files. main.cpp and directories _personalityinput_ and
-_deprecated_, as well as their contents, are not necessary. All
-other files are necessary. Keep all files in the same
-directory.<br/>
+_deprecated_, as well as their contents, are not necessary. Any .jpg
+files are not necessary. All other files are necessary. Keep all
+files in the same directory.<br/>
 **ExpMax.h** is the sole interface necessary to utilize this API.
 All other files contain subroutines that should **not** be
 directly utilized. ExpMax.h alone contains sufficient interface to
@@ -76,8 +76,10 @@ Use the provided makefile and run "make" on the command line in
 the directory with all the files to compile into executable
 "exmax.exe".<br/>
 Output of exmax.exe after compiling with given main.cpp:<br/>
-<br/>
-<img src="personalityinput/sample_screenshot.jpg" width="75%">
+Survey:<br/>
+<img src="personalityinput/sample_screenshot1.jpg" width="75%">
+Results:<br/>
+<img src="personalityinput/sample_screenshot2.jpg" width="75%">
 
 ## Input files
 
