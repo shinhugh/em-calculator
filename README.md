@@ -40,7 +40,7 @@ own about the subjects involved.
 **API**:<br/>
 The ExpMax interface enables expectation-maximization calculations.
 Look at the probability model:<br/>
-<img src="probmodel.jpg" width="25%"><br/>
+<img src="probmodel.jpg" width="50%"><br/>
 Any data set that aligns with this model can be fed into an ExpMax
 object to predict the missing values for the observed parameters.
 Look below for formatting.<br/>
