@@ -40,7 +40,7 @@ own about the subjects involved.
 **API**:<br/>
 The ExpMax interface enables expectation-maximization calculations.
 Look at the probability model:<br/>
-<img src="probmodel.jpg" width="75%"><br/>
+<img src="probmodel.jpg" width="25%"><br/>
 Any data set that aligns with this model can be fed into an ExpMax
 object to predict the missing values for the observed parameters.
 Look below for formatting.<br/>
@@ -76,9 +76,10 @@ Use the provided makefile and run "make" on the command line in
 the directory with all the files to compile into executable
 "exmax.exe".<br/>
 Output of exmax.exe after compiling with given main.cpp:<br/>
-Survey:<br/>
-<img src="personalityinput/sample_screenshot1.jpg" width="75%">
-Results:<br/>
+**Survey**:<br/>
+<img src="personalityinput/sample_screenshot1.jpg" width="50%">
+<br/>
+**Results**:<br/>
 <img src="personalityinput/sample_screenshot2.jpg" width="75%">
 
 ## Input files
