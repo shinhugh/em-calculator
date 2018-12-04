@@ -1,9 +1,9 @@
-# Expectation-Maximization Calculator (WIP)
+# Expectation-Maximization Calculator
 
-A command line utility that takes in data and uses
-expectation-maximization to calculate unobserved
-data values. Feed the program data and it will learn on its
-own about the subjects involved.<br/>
+An API that provides the ExpMax interface, which performs
+expectation-maximization on a data set given by the user.
+The data must be in accordance with the probability model
+shown below.<br/>
 <br/>
 Suppose you have a certain selection of books and you have
 a large number of people take a survey on whether they like
@@ -12,7 +12,7 @@ your selection. The program will take the data from the survey
 and calculate whether a person who hasn't read a certain book
 would be likely to enjoy it.<br/>
 The context isn't limited to books nor binary response models.
-This program can be applied to the question of people's favorite
+The API can be applied to the question of people's favorite
 dessert flavors or apparel colors.<br/>
 The number of possible responses can be any value (> 0), but
 **all questions must have the same pool of possible responses**.
@@ -21,40 +21,68 @@ ice cream and lollipop flavors, respectively, but question 3
 cannot ask for the person's favorite salad dressing (unless
 chocolate salad dressing is a thing).<br/>
 <br/>
-**This project is still a work-in-progress.**
+Also included is a command line utility that takes in data about
+different people and their emotional responses to different
+activities. It prompts the user to take a survey; each question
+names an activity and asks the user to select the closest emotion
+he/she would feel when performing the specified activity. At the
+end of the survey, it calculates, for each activity the user did
+not respond to, the emotion he/she would most likely experience
+should he/she try that activity.<br/>
+This program uses the ExpMax API described above.<br/>
+<br/>
+The API uses expectation-maximization to calculate unobserved
+data values. Feed the program data and it will learn on its
+own about the subjects involved.
 
 ## Goal
 
+**API**:<br/>
+The ExpMax interface enables expectation-maximization calculations.
+Look at the probability model:<br/>
+<img src="probmodel.jpg" width="75%"><br/>
+Any data set that aligns with this model can be fed into an ExpMax
+object to predict the missing values for the observed parameters.
+Look below for formatting.<br/>
+<br/>
+**Survey program** (main.cpp):<br/>
 The program will take data and, given that person X has not given a
-definite response to a specific topic (i.e. responded "don't know"
-to "Avicii"), determine the most likely response person X would make
-to that same topic (i.e. person X is most likely to be a fan of
-Avicii). To make this calculation, the program learns from the inputs
-made by all others on this category as well as the inputs made by
-person X on the other categories.
+definite response to a specific activity (i.e. responded "don't know"
+to "Conduct a musical choir"), determine the most likely response
+person X would make to that same activity (i.e. person X is most
+likely to feel upset when conducting a musical choir). To make this
+calculation, the program learns from the inputs made by all others on
+this activity as well as the inputs made by person X on all other
+categories.
 
 ## Get started
 
-Download all files. makefile, main.cpp, and directory sampleinput,
-as well as its contents, are not necessary. All other files are
-necessary. Keep all files in the same directory.<br/>
+Download all files. main.cpp and directories _personalityinput_ and
+_deprecated_, as well as their contents, are not necessary. All
+other files are necessary. Keep all files in the same
+directory.<br/>
 **ExpMax.h** is the sole interface necessary to utilize this API.
 All other files contain subroutines that should **not** be
 directly utilized. ExpMax.h alone contains sufficient interface to
 provide any functionality that this program is capable of.<br/>
-main.cpp is a sample main file provided to create an executable and
-demonstrate functionality. Feel free to refer to it.<br/>
-Directory sampleinputs contains the sample input files that go with
+main.cpp is the file that is compiled to create the executable for
+the activities survey program. If only the API is desired, this is
+not necessary. Feel free to refer to it when building your own
+program that uses the ExpMax interface.<br/>
+Directory personalityinputs contains the input files that go with
 the provided main.cpp file. Feel free to refer to its contents for
 formatting.<br/>
-Output of exmax.exe with argument "music" after compiling with
-sample main.cpp:<br/>
+Use the provided makefile and run "make" on the command line in
+the directory with all the files to compile into executable
+"exmax.exe".<br/>
+Output of exmax.exe after compiling with given main.cpp:<br/>
 <br/>
-<img src="sampleinput/sample_screenshot.jpg" width="75%">
+<img src="personalityinput/sample_screenshot.jpg" width="75%">
 
 ## Input files
 
-There are 4 different files to feed into the program:<br/>
+There are 4 different files to feed into the ExpMax
+constructor:<br/>
 * Initial prior probability values
 * Initial conditional probability values
 * Data samples

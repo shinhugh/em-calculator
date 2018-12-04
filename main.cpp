@@ -5,6 +5,7 @@
 #define MEANINGS "_meanings.txt"
 #define CATEGORIES_COUNT 48
 #define INPUTS_COUNT 5
+#define FILESET_NAME "personality"
 #include <limits>
 #include <iostream>
 #include <sstream>
@@ -13,15 +14,9 @@
 // Command line interface for expecation-maximization utility.
 int main(int argc, char **argv)
 {
-  // must specify file names prefix
-  if (argc == 1)
-  {
-    std::cout << "Specify name of file set." << std::endl;
-    return 0;
-  }
 
   // file names prefix
-  std::string fileSetName(argv[1]);
+  std::string fileSetName(FILESET_NAME);
   // file location directory
   std::string fileDir("./personalityinput"); // <- change if necessary
 
