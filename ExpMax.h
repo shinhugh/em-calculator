@@ -46,11 +46,11 @@
  */
 
 // wrapper class for EM, narrowing down usage
-class ExpMax {
+class ExpMax
+{
 private:
-
   // does all the math
-  EM* calculator;
+  EM *calculator;
 
   // same values from EM
   // m is one less; m doesn't include j = 0
@@ -84,20 +84,19 @@ private:
 
   // call 3rd
   std::vector<std::vector<std::vector<double> > >
-    parseInitX(std::string filename);
+  parseInitX(std::string filename);
 
   // call 4th
   std::vector<std::vector<unsigned short> >
-    parseData(std::string filename);
+  parseData(std::string filename);
 
   // call 1st
   void parseMeanings(std::string filename);
 
 public:
-
   // constructor
   ExpMax(std::string initY_file, std::string initX_file,
-    std::string data_file, std::string meaning_file);
+         std::string data_file, std::string meaning_file);
 
   // alternate constructor that doesn't use initY_file
   // or initX_file
@@ -106,7 +105,7 @@ public:
   // instead, a k value (total # of possible Y values) must
   // be explicitly specified
   ExpMax(int hiddenParamCount, std::string data_file,
-    std::string meaning_file);
+         std::string meaning_file);
 
   // destructor
   ~ExpMax();
@@ -119,8 +118,7 @@ public:
   //   false otherwise
   // pair.second (string):
   //   name of most likely / already input response
-  std::pair<bool, std::string> mostProbVal
-    (std::string sampleName, std::string paramName);
+  std::pair<bool, std::string> mostProbVal(std::string sampleName, std::string paramName);
 
   // get list of samples' names, sorted alphabetically
   std::vector<std::string> getSampleNames();
@@ -134,7 +132,6 @@ public:
 
   // get list of categories specified sample lacks input for
   std::vector<std::string> noResponseList(std::string sampleName);
-
 };
 
 #endif
